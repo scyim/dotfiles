@@ -1,0 +1,8 @@
+ignore-empty-password
+show-failed-attempts
+daemonize
+image=~/.config/swaylock/lock.jpg
+show-keyboard-layout
+scaling=fill
+indicator-idle-visible
+indicator-radius=80

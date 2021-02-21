@@ -1,0 +1,42 @@
+set font "WenQuanYi Zen Hei 10"
+
+set window-title-basename true
+set statusbar-basename false
+set zoom-center true
+
+#stop at page boundries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+set page-padding 0
+
+set guioptions ""
+
+set default-fg "#000000"
+set default-bg "#F7F7F6"
+
+set statusbar-fg "#B0B0B0"
+set statusbar-bg "#202020"
+
+set inputbar-bg "#151515"
+set inputbar-fg "#FFFFFF"
+
+set notification-error-bg "#AC4142"
+set notification-error-fg "#151515"
+
+set notification-warning-bg "#AC4142"
+set notification-warning-fg "#151515"
+
+set highlight-color "#F4BF75"
+set highlight-active-color "#6A9FB5"
+
+set completion-highlight-fg "#151515"
+set completion-highlight-bg "#90A959"
+
+set completion-bg "#303030"
+set completion-fg "#E0E0E0"
+
+set notification-fg "#000000"
+set notification-bg "#ffffff"

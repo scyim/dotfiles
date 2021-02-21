@@ -1,0 +1,117 @@
+py3status {
+
+}
+
+order += "netdata"
+order += "wireless _first_"
+order += "wifi"
+order += "disk /"
+# order += "dpms"
+# order += "process_status VPN"
+# order += "emerge_status"
+order += "load"
+order += "bluetooth"
+order += "backlight"
+order += "volume_status speakers"
+order += "volume_status mic"
+order += "battery_level"
+order += "tztime local"
+
+process_status VPN {
+	format = "{icon}"
+	icon_on = "VPN"
+	icon_off = "VPN"
+	process = "openvpn"
+	on_click 1 = "exec terminator -c openvpn -e 'test -f /run/openvpn.pid || sudo systemctl start openvpn-client@numberly'"
+	on_click 3 = "exec sudo systemctl stop openvpn-client@numberly"
+}
+
+netdata {
+    format = "[{down}↓{up}↑]"
+}
+
+
+dpms {
+	icon_off = ""
+	icon_on = ""
+    button_toggle 1
+}
+
+
+load {
+	format = "%5min"
+}
+
+backlight {
+	device = "intel_backlight"
+    brightness_minimal = 20
+	format = "{level}%" 
+	color = "#b58900"
+	on_click 4 = "exec light -A 5"
+	on_click 5 = "exec light -U 5"
+}
+
+volume_status mic {
+    format = ' {percentage}%'
+    format_muted = ' {percentage}%'
+	button_down = 5
+	button_mute = 1
+	button_up = 4
+	is_input = true
+	thresholds = [(0, 'bad'), (10, 'degraded'), (20, 'good')]
+}
+
+volume_status speakers {
+	command = "pactl"
+	format = ' {percentage}%'
+	format_muted = ' {percentage}%'
+	button_down = 5
+	button_mute = 1
+	button_up = 4
+	thresholds = [(0, 'bad'), (5, 'degraded'), (10, 'good')]
+	max_volume = 200
+}
+
+wifi {
+    format = "{signal_percent}% {ip}"
+}
+
+wireless _first_ {
+	format_down = ""
+	format_up = ""
+#    on_click 1 = "exec pidof nm-applet || dbus-launch nm-applet"
+#    on_click 3 = "exec killall nm-applet"
+}
+
+bluetooth {
+	format = ""
+	on_click 1 = "exec bluetoothctl power on && bluetoothctl connect 2C:41:A1:F7:DA:B2"
+	on_click 3 = "exec bluetoothctl power off"
+}
+
+disk "/" {
+	format = "/ %free"
+	# on_click 1 = "exec thunar ~"
+}
+
+volume master {
+	device = "default"
+	format = "♪ %volume"
+	mixer = "Master"
+	mixer_idx = 0
+	on_click 1 = "exec amixer set Master toggle"
+	on_click 4 = "exec amixer set Master 5%+"
+	on_click 5 = "exec amixer set Master 5%-"
+}
+
+battery_level {
+	blocks = ''
+	charging_character = ''
+	format = '{icon} {percent}%'
+	hide_when_full = True
+	measurement_mode = 'sys'
+}
+
+tztime local {
+     format = " %m-%d %H:%M"
+}

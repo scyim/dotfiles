@@ -1,0 +1,5 @@
+max-visible=5
+font=DejaVu Sans Mono 12
+border-radius=8
+background-color=#2E343690
+default-timeout=4000

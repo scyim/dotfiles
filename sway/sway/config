@@ -1,0 +1,315 @@
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+bindsym button3 floating toggle
+
+# title bar
+font pango:DejaVu Sans Mono 10
+
+# title bar
+titlebar_border_thickness 0
+titlebar_padding 0 0
+title_align center
+default_border pixel 1
+default_floating_border none
+hide_edge_borders smart_no_gaps
+# gaps
+gaps inner 8
+gaps horizontal 4
+gaps vertical 2
+
+# focus
+focus_follows_mouse yes
+focus_on_window_activation smart
+#bindsym --whole-window $mod+button2 kill
+
+# start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec --no-startup-id xfce4-terminal
+bindsym $mod+Return exec gnome-terminal
+# bindsym $mod+Return exec alacritty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+set $menu dmenu_path | dmenu -b -fn 'Droid Sans Mono-9' | xargs swaymsg exec --
+#bindsym $mod+d exec $menu
+
+bindsym $mod+d exec rofi -show drun 
+# bindsym $mod+d exec wofi --show drun
+bindsym $mod+Shift+d exec rofi -show ssh
+
+# start dmenu (a program launcher)
+ #bindsym $mod+d exec dmenu_run
+#
+#bindsym $mod+n exec dmenu_run
+#bindsym $mod+d exec rofi -show run
+#bindsym $mod+shift+d exec rofi -show drun
+#bindsym $mod+Tab exec rofi -show combi
+#
+#bindsym $mod+d exec wofi --show dmenu
+#bindsym $mod+shift+d exec wofi --show drun
+#bindsym $mod+Tab exec rofi -show combi
+#bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left 	focus left
+bindsym $mod+Down 	focus down
+bindsym $mod+Up 	focus up
+bindsym $mod+Right 	focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+#bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+i split h
+bindsym $mod+o split v
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+#bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+set $ws1 "1: Home "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws10 "10: "
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+# bindsym $mod+Shift+e exec "swaymsg-t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'"
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit'
+
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id ~/.config/sway/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id ~/.config/sway/i3exit logout, mode "default"
+    bindsym s exec --no-startup-id ~/.config/sway/i3exit suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.config/sway/i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/sway/i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/.config/sway/i3exit shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+p mode "$mode_system"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym j resize shrink height 5 px or 5 ppt
+		# bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# set primary gruvbox colorscheme colors
+set $bg       #282828
+set $red      #cc241d
+set $green    #98971a
+set $yellow   #d79921
+set $blue     #458588
+set $purple   #b16286
+set $aqua     #689d68
+set $gray     #a89984
+set $darkgray #1d2021
+set $white    #FFFFFF
+
+set $yaru_bg #2C2C2C
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    # status_command py3status --wm sway 
+    # status_command waybar
+    swaybar_command waybar
+    font pango: DejaVu Sans Mono Bold 10
+    position top
+    #colors {
+        ## bar background color
+        #background $bg
+        ## text color used for blocks that do not have a color specified.
+        #statusline $yellow
+        ## workspaces section            
+        ##                    border  backgr. text
+        #focused_workspace    $aqua $aqua $darkgray
+        #inactive_workspace   $darkgray $darkgray $yellow
+        #active_workspace     $darkgray $darkgray $yellow
+        #urgent_workspace     $red $red $bg
+    #}
+}
+
+# green gruvbox
+# class                 border|backgr|text|indicator|child_border
+#client.focused          $blue $blue $white $purple $darkgray
+#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+#client.unfocused        $yaru_bg $yaru_bg $yellow $purple $darkgray
+#client.urgent           $red $red $white $red $red
+
+# blue gruvbox
+## class                 border|backgr|text|indicator|child_border
+#client.focused          $blue $blue $darkgray $purple $darkgray
+#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+#client.urgent           $red $red $white $red $red
+
+
+# sway-input see: man 5 sway-input
+set $myTouchPad 1267:91:Elan_Touchpad
+input $myTouchPad dwt enabled
+input $myTouchPad tap enabled
+input $myTouchPad drag enabled
+input $myTouchPad natural_scroll enabled
+input $myTouchPad scroll_method two_finger
+input $myTouchPad click_method clickfinger
+input $myTouchPad tap_button_map lrm
+
+# seat seat0 xcursor_theme DMZ-White 24
+
+# sway wallpaper
+#output eDP-1 res 1920x1080 pos 1920,0 scale 0  bg ~/Pictures/centos.png fill
+#output eDP-1 scale 1 bg /home/yim/Pictures/centos.png fill
+output eDP-1 res 1920x1080 pos 1920,0 scale 0  bg ~/Pictures/wallpaper/wallhaven-lmxmxy.png fill
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
+#bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle 
+bindsym $mod+F6 exec --no-startup-id ~/.config/i3/touchpad.sh
+# bindsym $mod+F2 exec --no-startup-id xfce4-appfinder -c
+# Media player controls
+bindsym XF86AudioPlay exec --no-startup-id playerctl play
+bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+# bindsym $mod+Control+t exec thunar
+# bindsym $mod+Control+n exec connman-gtk
+bindsym Shift+Print exec 'grim -g - ~/Pictures/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+
+# apps
+exec mako
+exec_always light -N 20
+exec_always nm-applet
+# exec xinput disable 'Elan Touchpad'
+# exec_always ibus-daemon -dr --panel /usr/libexec/ibus-wayland
+# exec_always /home/y/Project/wrime/pg/wlpinyin/build/wlpinyin
+# exec_always fcitx5 -r --enable wayland -disable ibusfront
+
+set $lock swaylock
+# exec swayidle \
+    # timeout 600  'exec $lock' \
+    # timeout 660  'swaymsg "output * dpms off"' \
+    # after-resume 'swaymsg "output * dpms on"' \
+    # before-sleep 'exec $lock'
+
+#bindsym $mod+space exec ~/.config/sway/ibus.sh
+
+# by class
+#for_window [class="XTerm"] floating enable, border normal
+#for_window [class="feh"] floating enable, border normal
+#for_window [class="Xfce4-appfinder"] floating enable, border normal
+#for_window [class="Thunar"] floating enable, border normal
+#for_window [class="Xarchiver"] floating enable, border normal
+#for_window [class="Evince"] floating enable
+#for_window [title="libreoffice-*"] floating enable
+#for_window [class="TelegramDesktop"] floating enable 
+#assign [class="TelegramDesktop"] $ws5
+#for_window [class="GoldenDict"] floating enable 
+#for_window [class="Mousepad"] floating enable 
+for_window [app_id="firefox"] border none, title_format "%app_id"
+for_window [class="Firefox"] border none, title_format "%class"
+
+# use 
+# swaymsg -t get_tree
+# get for_window property
+
+#default_border none
+#default_floating_border normal
+#xwayland disable
+xwayland force

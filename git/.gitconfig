@@ -1,0 +1,10 @@
+[user]
+	email = shichuanyim@gmail.com
+	name = scyim
+[init]
+	defaultBranch = master
+[core]
+	editor = vim
+	quotepath = false
+[credential]
+	helper = cache

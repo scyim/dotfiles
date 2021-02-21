@@ -1,0 +1,4 @@
+INPUT_METHOD=wayland
+GTK_IM_MODULE=wayland
+QT_IM_MODULE=wayland
+XMODIFIERS=@im=wayland

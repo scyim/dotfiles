@@ -1,0 +1,20 @@
+#var
+automatic-footnotes=Off
+cursor-movement-scrolls=On
+hide-note-references=On
+highlight-searches=On
+search-skip-screen=On
+mouse=Off
+scroll-behavior=Page Only
+scroll-last-node=Stop
+
+link-style=yellow
+active-link-style=yellow,bold,underline
+match-style=underline,bold,green
+
+#info
+l forward-char
+w forward-word
+h backward-char
+\r goto-node
+^p move-to-prev-xref

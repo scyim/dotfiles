@@ -1,0 +1,5 @@
+configuration {
+    font: "DejaVu Sans Mono 14";
+    show-icons: true;
+}
+@import "/usr/share/rofi/themes/Monokai.rasi"

@@ -1,0 +1,9 @@
+vim/.vim/plugged
+fcitx5/fcitx5/crash.log
+gtk-3.0/gtk-3.0/bookmarks
+ibus/ibus/bus
+ibus/ibus/pinyin/bus
+ibus/ibus/rime/build
+ibus/ibus/rime/*.userdb
+ibus/ibus/rime/sync
+vim/.vim/sessions
