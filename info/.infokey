@@ -10,11 +10,13 @@ scroll-last-node=Stop
 
 link-style=yellow
 active-link-style=yellow,bold,underline
-match-style=underline,bold,green
+match-style=bold,green
 
 #info
 l forward-char
 w forward-word
 h backward-char
-\r goto-node
-^p move-to-prev-xref
+p move-to-prev-xref
+n move-to-next-xref
+, search-previous
+. search-next

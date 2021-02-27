@@ -29,7 +29,9 @@ install:
 	stow -t ~/.config fcitx5
 	stow -t ~/.config i3status
 	stow -t ~/.config rofi
+	stow -t ~ npm
 uninstall:
+	stow -t ~ -D npm
 	stow -t ~ -D info
 	stow -t ~ -D bash
 	stow -t ~ -D vim

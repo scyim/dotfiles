@@ -10,15 +10,24 @@ Plug 'skywind3000/vim-dict'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-markdown'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 
 if $DESKTOP_SESSION != 'sway'
-    Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx5'}
-    " Plug 'kevinhwang91/vim-ibus-sw'
+    " Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx5'}
+    Plug 'kevinhwang91/vim-ibus-sw'
 endif
+
+if has('nvim-0.0.5')
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+    " Plug 'neovim/nvim-lspconfig'
+endif
+
+Plug 'jsfaint/gen_tags.vim'
 
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
@@ -30,9 +39,13 @@ Plug 'dstein64/vim-startuptime'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
+
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/edge'
+Plug 'sainnhe/sonokai'
 Plug 'tomasr/molokai'
+Plug 'glepnir/zephyr-nvim'
+Plug 'bkegley/gloombuddy'
 
 call plug#end()
 
@@ -88,14 +101,14 @@ let g:one_allow_italics=1
 let g:molokai_original=1
 let g:rehash256=1
 set background=dark
-colorscheme gruvbox
+colorscheme sonokai
 " hightlight matches
 highlight MatchParen term=underline gui=underline cterm=underline 
-highlight Normal ctermbg=NONE
+" highlight Normal ctermbg=NONE
 " alacritty没有阴影
-if ($TERM == 'alacritty')
-    highlight Normal ctermbg=NONE
-endif
+" if ($TERM == 'alacritty')
+    " highlight Normal ctermbg=NONE
+" endif
 
 " cursor shape
 " echo -e -n "\x1b[\x30 q" # changes to blinking block
@@ -120,10 +133,18 @@ let g:apc_enable_ft = {'text':1, 'c++':1, 'python':1}
 
 " indentLine
 let g:indentLine_setColors = 1
-let g:indentLine_char = '┊'
+let g:indentLine_char = '┆'
 let g:indentLine_color_term = 239
 " let g:indentLine_bgcolor_term = 202
-let g:indentLine_fileType = ['shell', 'python', 'css', 'html']
+let g:indentLine_fileType = ['shell', 'python']
+
+" let g:indent_blankline_char = '┆'
+" let g:indent_blankline_use_treesitter = v:true
+" let g:indent_blankline_filetype = ['python']
+" let g:indent_blankline_space_char_blankline = ' '
+" let g:indent_blankline_filetype_exclude = ['help']
+" let g:indent_blankline_buftype_exclude = ['terminal']
+" let g:indent_blankline_bufname_exclude = ['README.md']
 
 " fzf-vim
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
@@ -151,18 +172,30 @@ let g:markdown_fenced_languages = ['cpp', 'python', 'bash=sh']
 let g:markdown_minlines = 100
 "let g:markdown_syntax_conceal = 0
 
-"Gtags
-set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-let GtagsCscope_Auto_Load = 1
-let GtagsCscope_Quiet = 1
-source /usr/share/gtags/gtags.vim
-source /usr/share/gtags/gtags-cscope.vim
-
 " skywind3000/asyncrun.vim
 let g:asyncrun_open=8
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml', 'build']
 
-source ~/.vim/coc.vim
+"Gtags
+set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+let GtagsCscope_Auto_Load = 1
+let GtagsCscope_Quiet = 1
+" source /usr/share/gtags/gtags.vim
+" source /usr/share/gtags/gtags-cscope.vim
+
+function s:gtags_search(line)
+     let l:line = split(a:line)[1]
+     let l:file = split(a:line)[2]
+     execute 'edit +'.l:line l:file
+endfunction
+
+nnoremap <silent> <Leader>T :call fzf#run(fzf#wrap({'source':'global -x .', 'sink':function('<sid>gtags_search'),
+             \ 'options': ['-m', '-d', '\t', '--with-nth', '1,2', '-n', '1', '--prompt', 'Tags> ']}))<CR>
+
+source ~/.vim/coc_config.vim
 source ~/.vim/func.vim
 source ~/.vim/mapping.vim
 source ~/.vim/statusline.vim
+if has('nvim-0.0.5')
+    source ~/.vim/nvim.vim
+endif

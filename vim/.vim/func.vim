@@ -1,13 +1,13 @@
 func! CompileAndRun()
     exec "w"
     if &filetype == 'c'
-        exec "AsyncRun gcc % -o %<; ./%<; rm %<" 
+        exec "AsyncRun -mode=term gcc % -o %<; ./%<; rm %<" 
     elseif &filetype == "cpp"
-        exec "AsyncRun g++ -std=c++17 -pthread % -o %<; ./%<; rm %<" 
+        exec "AsyncRun  -mode=term g++ -std=c++17 -pthread % -o %<; ./%<; rm %<" 
     elseif &filetype == 'sh'
-        exec "AsyncRun time bash %" 
+        exec "AsyncRun -mode=term time bash %" 
     elseif &filetype == 'python'
-        exec "AsyncRun python %"
+        exec "AsyncRun -mode=term python %"
     endif
 endfunc
 

@@ -8,3 +8,5 @@
 	quotepath = false
 [credential]
 	helper = cache
+[pull]
+	ff = true

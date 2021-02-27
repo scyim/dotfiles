@@ -1,20 +1,53 @@
-@define-color background #282828;
-@define-color foreground #ebdbb4;
-@define-color black      #222222;
-@define-color yellow     #fabd2f;
-@define-color red        #fb4934;
-@define-color green      #b8bb26;
+@define-color gray0  #121212;
+@define-color gray1  #262626;
+@define-color gray2  #303030;
+@define-color gray3  #4e4e4e;
+@define-color gray4  #585858;
+@define-color gray5  #606060;
+@define-color gray6  #808080;
+@define-color gray7  #8a8a8a;
+@define-color gray8  #9e9e9e;
+@define-color gray9  #bcbcbc;
+@define-color gray10 #d0d0d0;
+@define-color black           #000000;
+@define-color white           #ffffff;
+@define-color darkestgreen    #005f00;
+@define-color darkgreen       #008700;
+@define-color mediumgreen     #5faf00;
+@define-color brightgreen     #afdf00;
+@define-color darkestcyan     #005f5f;
+@define-color mediumcyan      #87dfff;
+@define-color darkestblue     #005f87;
+@define-color darkblue        #0087af;
+@define-color darkestred      #5f0000;
+@define-color darkred         #870000;
+@define-color mediumred       #af0000;
+@define-color brightred       #df0000;
+@define-color brightestred    #ff0000;
+@define-color darkestpurple   #5f00af;
+@define-color mediumpurple    #875fdf;
+@define-color brightpurple    #dfdfff;
+@define-color brightorange    #ff8700;
+@define-color brightestorange #ffaf00;
+@define-color yellow          #b58900;
+@define-color orange          #cb4b16;
+@define-color red             #dc322f;
+@define-color magenta         #d33682;
+@define-color violet          #6c71c4;
+@define-color blue            #268bd2;
+@define-color cyan            #2aa198;
+@define-color green           #859900;
 
 * {
   border: none;
-  border-radius: 0;
-  font-family: Input, "Font Awesome 5 Free";
+  border-radius: 1;
+  font-family: Input, "Font Awesome 5 Free" ;
   font-size: 14px;
   min-height: 0;
 }
 
 window#waybar {
-  background: @background;
+  background: @gray1;
   color: @foreground;
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -22,67 +55,46 @@ window#waybar {
 
 #workspaces button {
   padding: 0 10px;
-  background: transparent;
-  color: @foreground;
-  border-top: 3px solid @background;
-  border-bottom: 3px solid transparent;
+  color: @gray10;
+  background-color: @gray5;
 }
 
 #workspaces button.focused {
-  border-bottom: 3px solid @green;
+  color: @gray2;
+  background-color: @mediumcyan;
+}
+
+#workspaces button:hover {
+    background: @mediumcyan;
+    color: @gray2;
+    border: none;
 }
 
 #workspaces button.urgent {
-  border-bottom: 3px solid @yellow;
+    color: @white;
+    background-color: @brightred;
 }
 
 #mode {
-  background-color: @black;
-  border-top: 3px solid @black;
-  border-bottom: 3px solid @red;
+  background-color: @mediumpurple;
+  font-weight: bold;
 }
 
-#custom-usbguard,
-#custom-decrypted,
-#custom-updates,
-#custom-mail,
-#custom-vpn.off,
 #battery.warning,
 #memory.warning,
-#cpu.warning,
-#custom-dnd.on,
-#custom-tablet.on {
-  border-bottom: 3px solid @yellow;
+#cpu.warning {
+    background-color: @red;
 }
 
-#custom-systemd,
 #battery.critical,
 #memory.critical,
-#cpu.critical,
-#custom-yubikey,
-#custom-recording {
+#cpu.critical {
   border-bottom: 3px solid @red;
 }
 
 #battery.charging {
-  border-bottom: 3px solid @green;
-}
-
-#mode,
-#pulseaudio,
-#custom-usbguard,
-#custom-yubikey,
-#custom-decrypted,
-#custom-systemd,
-#custom-updates,
-#custom-mail,
-#network,
-#cpu,
-#memory,
-#backlight,
-#battery {
-  padding: 0 3px;
-  margin: 0 3px;
+    color: white;
+    background-color: green;
 }
 
 #clock {
@@ -91,16 +103,24 @@ window#waybar {
   font-weight: bold;
 }
 
-#custom-vpn,
-#custom-dnd,
-#custom-tablet,
-#custom-recording {
-  padding: 0;
-  margin: 0 3px;
-}
-
 #tray {
   padding: 0.5px;
   margin: 0.5px;
-  /* background-color: #506365;  */
+  background-color: @gray6
 }
+#idle_inhibitor, 
+#pulseaudio,     
+#network,        
+#cpu,
+#memory,         
+#temperature,    
+#backlight,      
+#battery,        
+#battery#bat2,   
+#tray {
+    border-radius: 0px;
+    color: @gray10;
+    background-color: @gray3;
+    margin-left: 2px;
+}
+

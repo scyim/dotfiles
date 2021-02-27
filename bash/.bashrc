@@ -49,24 +49,30 @@ export GTAGSLIBPATH="/usr/include"
 # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
 # explanation: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 #
-# export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-# export LESS_TERMCAP_md=$'\e[1;34m'     # begin blink
-# export LESS_TERMCAP_so=$'\e[1;97m'     # begin reverse video
-# export LESS_TERMCAP_us=$'\e[1;96m'     # begin underline
-# export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-# export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-# export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
-# export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+export LESS=-R
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;49;92m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;35m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 # qt5 
 # Need to install qgnomeplatform
 # This fix is guaranteed to work with Adwaita or Adwaita-dark.
-export QT_QPA_PLATFORMTHEME='gnome'
+export QT_QPA_PLATFORMTHEME='qt5ct'
 export IBUS_USE_PORTAL=1
 # export QT_STYLE_OVERRIDE=Adwaita
 
 # rust
 export PATH="$PATH:$HOME/.cargo/bin"
+# npm
+# npm config set prefix "${HOME}/.local/lib/npm-packages"
+NPM_PACKAGES="${HOME}/.local/lib/npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # alias
 alias info="info --vi-keys"
@@ -77,8 +83,9 @@ alias la="ls -a --group-directories-first --color=auto"
 alias upgrade="sudo dnf upgrade"
 alias sqlite="sqlite3"
 alias vim="nvim"
+alias readit="vim -u ~/.vimreader"
 alias firefox='/usr/bin/firefox-wayland'
-alias zeal="zeal -style Fusion"
+# alias zeal="zeal -style Fusion"
 alias bat="bat --style=plain --theme=TwoDark"
 # tmux
 alias ta="tmux attach"
@@ -87,6 +94,7 @@ alias ts="tmux new-session -s"
 alias tl="tmux list-sessions"
 alias tksv="tmux kill-server"
 alias tkss="tmux kill-session -t"
+
 alias objdump="objdump -M intel "
 alias j="z"
 alias ..="cd .."
@@ -106,12 +114,17 @@ alias o.="xdg-open ."
     # PS1="[\u@\h \W]\$ "
 # fi
 
-# export PS1="[\u@\h \W]\$ "
+if [[ ${EUID} == 0 ]] ; then
+    PS1='\[\033[01;31m\][\u@\h \W] \$\[\033[00m\] '
+else
+    PS1='\[\033[01;34m\]\u@\h \W \$\[\033[00m\] '
+fi
+
+# PS1="\[\033[01;34m\][\u@\h \W] \[\033[00m\]\$\[\033[00m\] "
 
 # apps
-# source /usr/share/autojump/autojump.bash
+source /usr/share/autojump/autojump.bash
 # source /usr/share/fzf/shell/key-bindings.bash
-eval "$(lua /home/y/SourceCode/z.lua/z.lua --init bash)"
 
 # killall ibus-daemon 2> /dev/null
 
@@ -138,7 +151,7 @@ function av() {
 }
 
 function set_proxy() {
-    export all_proxy=socks5://127.0.0.1:1080
+    export all_proxy=socks5://127.0.0.1:7891
 }
 function unset_proxy() {
     unset all_proxy
