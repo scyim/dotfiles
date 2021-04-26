@@ -1,3 +1,6 @@
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+
 if &compatible
     set nocompatible
 endif
@@ -18,14 +21,12 @@ Plug 'skanehira/preview-markdown.vim'
 Plug 'preservim/nerdcommenter'
 " Plug 'preservim/nerdtree'
 Plug 'mcchrish/nnn.vim'
-" Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx5'}
+Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx5'}
 " Plug 'kevinhwang91/vim-ibus-sw'
 
-" if has('nvim-0.0.5')
-    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " " Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
-    " " Plug 'neovim/nvim-lspconfig'
-" endif
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+" Plug 'neovim/nvim-lspconfig'
 
 Plug 'jsfaint/gen_tags.vim'
 Plug 'honza/vim-snippets'
@@ -72,7 +73,7 @@ set noswapfile
 "set colorcolumn=81
 set signcolumn=no
 " set cursorline
-set mouse=a
+" set mouse=nv
 " -- gui config
 " set guifont=JetBrains\ Mono:16
 
@@ -206,6 +207,6 @@ source ~/.vim/coc_config.vim
 source ~/.vim/func.vim
 source ~/.vim/mapping.vim
 source ~/.vim/statusline.vim
-" if has('nvim-0.0.5')
-    " source ~/.vim/nvim.vim
-" endif
+if has('nvim-0.0.5')
+  source ~/.vim/nvim.vim
+endif

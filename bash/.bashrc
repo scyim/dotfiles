@@ -36,7 +36,10 @@ export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
 # alias sdkmanager="sdkmanager --sdk_root=/opt/Android/Sdk"
 
 # using dedicated graphic card
-# export DRI_PRIME=1
+export DRI_PRIME=1
+
+# Mozilla
+export MOZ_ENABLE_WAYLAND=1
 
 # Libreoffice
 export SAL_ENABLESKIA=1
@@ -75,6 +78,7 @@ export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # alias
+alias so="source"
 alias info="info --vi-keys"
 alias l="ls -a --group-directories-first --color=auto"
 alias ls="ls --group-directories-first --color=auto"
@@ -83,8 +87,9 @@ alias la="ls -a --group-directories-first --color=auto"
 alias upgrade="sudo dnf upgrade"
 alias sqlite="sqlite3"
 alias vim="nvim"
+# alias vim="/opt/neovim/bin/nvim"
 alias readit="vim -u ~/.vimreader"
-alias firefox='/usr/bin/firefox-wayland'
+# alias firefox='/usr/bin/firefox-wayland'
 # alias zeal="zeal -style Fusion"
 alias bat="bat --style=plain --theme=TwoDark"
 # tmux
@@ -97,7 +102,6 @@ alias tkss="tmux kill-session -t"
 
 alias objdump="objdump -M intel "
 alias j="z"
-alias ..="cd .."
 alias open="xdg-open"
 alias o="xdg-open"
 alias o.="xdg-open ."
@@ -135,16 +139,22 @@ then
     stty -ixon
 fi
 
+shopt -s autocd       # change to named directory
+shopt -s cdspell      # autocorrects cd misspellings
+shopt -s checkwinsize # update the value of LINES and COLUMNS after each command if altered
+shopt -s cmdhist      # save multi-line commands in history as single line
+shopt -s histappend
+
 # Swaywm
-if [[ $DESKTOP_SESSION == "sway" ]]
-then
-    export GTK_IM_MODULE=wayland
-    export QT_IM_MODULE=wayland
-    export XMODIFIERS=@im=wayland
-    export QT_QPA_PLATFORM=wayland-egl
-    export SDL_VIDEODRIVER=wayland
-    export XDG_SESSION_TYPE=wayland
-fi
+# if [[ $DESKTOP_SESSION == "sway" ]]
+# then
+    # export GTK_IM_MODULE=wayland
+    # export QT_IM_MODULE=wayland
+    # export XMODIFIERS=@im=wayland
+    # export QT_QPA_PLATFORM=wayland-egl
+    # export SDL_VIDEODRIVER=wayland
+    # export XDG_SESSION_TYPE=wayland
+# fi
 
 function av() {
     echo $1 >> ~/vocabulary

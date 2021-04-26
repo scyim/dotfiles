@@ -23,5 +23,6 @@
     "notification.maxHeight": 10,
     "python.linting.pylintEnabled": true,
     "snippets.ultisnips.enable": true,
-    "python.analysis.typeCheckingMode":"off"
+    "python.analysis.typeCheckingMode":"off",
+    "rust-client.disableRustup": true
 }

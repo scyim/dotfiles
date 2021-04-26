@@ -4,8 +4,8 @@
 # environment variables. Some entries may override variables
 # set by alacritty itself.
 env:
-  # TERM: xterm-256color
-  TERM: alacritty
+  TERM: xterm-256color
+  # TERM: alacritty
 
 # This value is used to set the `$TERM` environment variable for
 # each instance of Alacritty. If it is not present, alacritty will
@@ -82,8 +82,8 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: JetBrains Mono
-    style: Regular
+    family: JetBrains Mono NL
+    style: Medium
   bold:
     family: JetBrains Mono
     style: Bold

@@ -1,7 +1,6 @@
 matchng=fuzzy
 gtk_dark=true
-allow-images=true
-image_size=20px
+allow-images=false
 drun-display_generic=true
 dynamic_lines=false
 no_actions=true
