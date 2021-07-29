@@ -15,9 +15,9 @@ default_border pixel 1
 default_floating_border none
 hide_edge_borders smart_no_gaps
 # gaps
-# gaps inner 8
-# gaps horizontal 4
-# gaps vertical 2
+gaps inner 8
+gaps horizontal 4
+gaps vertical 2
 
 # focus
 focus_follows_mouse no
@@ -92,6 +92,7 @@ bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
+bindsym $mod+space focus none
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -186,18 +187,25 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # set primary gruvbox colorscheme colors
-set $bg       #282828
-set $red      #cc241d
-set $green    #98971a
-set $yellow   #d79921
-set $blue     #458588
-set $purple   #b16286
-set $aqua     #689d68
-set $gray     #a89984
-set $darkgray #1d2021
-set $white    #FFFFFF
+# set $bg       #282828
+# set $red      #cc241d
+# set $green    #98971a
+# set $yellow   #d79921
+# set $blue     #458588
+# set $purple   #b16286
+# set $aqua     #689d68
+# set $gray     #a89984
+# set $darkgray #1d2021
+# set $white    #FFFFFF
 
-set $yaru_bg #2C2C2C
+# set $yaru_bg #2C2C2C
+
+# Dracula
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -205,21 +213,21 @@ set $yaru_bg #2C2C2C
 bar {
     # status_command py3status --wm sway 
     # status_command waybar
-    swaybar_command waybar
+    # swaybar_command waybar
+    swaybar_command swaybar
     font pango: DejaVu Sans Mono Bold 10
     position top
-    #colors {
-        ## bar background color
-        #background $bg
-        ## text color used for blocks that do not have a color specified.
-        #statusline $yellow
-        ## workspaces section            
-        ##                    border  backgr. text
-        #focused_workspace    $aqua $aqua $darkgray
-        #inactive_workspace   $darkgray $darkgray $yellow
-        #active_workspace     $darkgray $darkgray $yellow
-        #urgent_workspace     $red $red $bg
-    #}
+    colors {
+        background #282A36
+        statusline #F8F8F2
+        separator  #44475A
+
+        focused_workspace  #44475A #44475A #F8F8F2
+        active_workspace   #282A36 #44475A #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
+        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+        binding_mode       #FF5555 #FF5555 #F8F8F2
+    }
 }
 
 # green gruvbox
@@ -252,7 +260,7 @@ input $myTouchPad tap_button_map lrm
 # sway wallpaper
 #output eDP-1 res 1920x1080 pos 1920,0 scale 0  bg ~/Pictures/centos.png fill
 #output eDP-1 scale 1 bg /home/yim/Pictures/centos.png fill
-output eDP-1 res 1920x1080 pos 1920,0 scale 0  bg ~/Pictures/Wallpapers/wallhaven-lqmvkp.png fill
+output eDP-1 res 1920x1080 pos 1920,0 scale 0  bg ~/Pictures/Wallpapers/img25.jpg fill
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
@@ -274,13 +282,14 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 bindsym Shift+Print exec 'grim -g - ~/Pictures/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 
 # apps
+# gsd
 exec mako
 exec_always light -N 20
 exec_always nm-applet
 # exec xinput disable 'Elan Touchpad'
 # exec_always ibus-daemon -dr --panel /usr/libexec/ibus-wayland
 # exec_always /home/y/Project/wrime/pg/wlpinyin/build/wlpinyin
-exec_always fcitx5 -r --enable wayland
+exec_always export FCITX_X11_USE_CLIENT_SIDE_UI=1; fcitx5 -r --enable wayland
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -308,6 +317,7 @@ set $lock swaylock
 #for_window [class="Mousepad"] floating enable 
 for_window [app_id="firefox"] border none, title_format "%app_id"
 for_window [class="Firefox"] border none, title_format "%class"
+for_window [app_id="org.telegram.desktop"] floating enable, border none
 for_window [app_id="eog"] border none, floating enable
 for_window [app_id="org.gnome.Nautilus"] floating enable
 for_window [app_id="firefox" title="^Picture-in-Picture$"] \
@@ -315,7 +325,7 @@ for_window [app_id="firefox" title="^Picture-in-Picture$"] \
 for_window [app_id="gedit"] floating enable
 for_window [app_id="org.zealdocs.zeal"] floating enable, border normal
 for_window [app_id="org.telegram.desktop"] floating enable, border normal
-# for_window [app_id="org.fcitx.fcitx5-config-qt"] floating enable, border normal
+for_window [app_id="org.fcitx.fcitx5-config-qt"] floating enable, border normal
 for_window [app_id="totem"] floating enable
 
 # use 
@@ -326,3 +336,4 @@ for_window [app_id="totem"] floating enable
 #default_floating_border normal
 #xwayland disable
 xwayland force
+

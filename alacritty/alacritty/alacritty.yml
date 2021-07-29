@@ -7,6 +7,7 @@ env:
   TERM: xterm-256color
   # TERM: alacritty
 
+
 # This value is used to set the `$TERM` environment variable for
 # each instance of Alacritty. If it is not present, alacritty will
 # check the local terminfo database and use `alacritty` if it is
@@ -21,19 +22,21 @@ window:
   dimensions:
     columns: 80
     lines: 24
-  dynamic_title: false
+
+  title: Alacritty
+  dynamic_title: true
+  gtk_theme_variant: dark
   class:
     instance: Alacritty
     general: Alacritty
-  gtk_theme_variant: dark
 
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 1
-    y: 1
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -48,7 +51,7 @@ window:
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
   decorations: full
-  title: Alacritty
+  
 
   # When true, alacritty starts maximized.
   # startup_mode: Maximized
@@ -162,7 +165,7 @@ colors:
   normal:
     black:   "#002b36"
     red:     "#FC2626"
-    green:   "#6BD902"
+    green:   "#6BD905"
     yellow:  "#FCE94F"
     blue:    "#268bd2"
     magenta: "#6c71c4"
@@ -217,7 +220,7 @@ bell:
 # Background opacity
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 1
 
 # Mouse bindings
 #
@@ -249,26 +252,6 @@ mouse:
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
-
-  url:
-    # URL launcher
-    #
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
-    #
-    # When set to `None`, URL launching will be disabled completely.
-    #
-    # Default:
-    #   - (macOS) open
-    #   - (Linux) xdg-open
-    #   - (Windows) explorer
-    launcher: xdg-open
-
-    # URL modifiers
-    #
-    # These are the modifiers that need to be held down for opening URLs when clicking
-    # on them. The available modifiers are documented in the key binding section.
-    modifiers: None
 
 selection:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
@@ -408,40 +391,80 @@ alt_send_esc: true
 #   - ~AppKeypad
 #   - AppKeypad
 key_bindings:
-  # (Windows/Linux only)
-  - { key: V,                      mods: Control|Shift, action: Paste        }
-  - { key: C,                      mods: Control|Shift, action: Copy         }
-  - { key: Insert,                 mods: Shift,     action: PasteSelection   }
-  - { key: Key0,                   mods: Control,   action: ResetFontSize    }
-  - { key: Equals,                 mods: Control,   action: IncreaseFontSize }
-  - { key: Minus,                  mods: Control,   action: DecreaseFontSize }
   - { key: LBracket,               mods: Alt,       action: ToggleViMode     }
   # Vi Mode
-  - { key: G,      mods: Shift,    mode: Vi, action: ScrollToBottom          }
-  - { key: B,      mods: Control,  mode: Vi, action: ScrollPageUp            }
-  - { key: F,      mods: Control,  mode: Vi, action: ScrollPageDown          }
-  - { key: V,                      mode: Vi, action: ToggleNormalSelection   }
-  - { key: V,      mods: Shift,    mode: Vi, action: ToggleLineSelection     }
-  - { key: V,      mods: Control,  mode: Vi, action: ToggleBlockSelection    }
-  - { key: Return,                 mode: Vi, action: Open                    }
-  - { key: K,                      mode: Vi, action: Up                      }
-  - { key: J,                      mode: Vi, action: Down                    }
-  - { key: H,                      mode: Vi, action: Left                    }
-  - { key: L,                      mode: Vi, action: Right                   }
-  - { key: Up,                     mode: Vi, action: Up                      }
-  - { key: Down,                   mode: Vi, action: Down                    }
-  - { key: Left,                   mode: Vi, action: Left                    }
-  - { key: Right,                  mode: Vi, action: Right                   }
-  - { key: N,                      mode: Vi, action: SearchNext              }
-  - { key: N,      mods: Shift,    mode: Vi, action: SearchPrevious          }
-  - { key: B,                      mode: Vi, action: SemanticLeftEnd         }
-  - { key: W,                      mode: Vi, action: SemanticRightEnd        }
-  - { key: E,                      mode: Vi, action: SemanticRightEnd        }
-  - { key: B,      mods: Shift,    mode: Vi, action: WordLeft                }
-  - { key: W,      mods: Shift,    mode: Vi, action: WordRight               }
-  - { key: E,      mods: Shift,    mode: Vi, action: WordRightEnd            }
-  - { key: I,                      mode: Vi, action: ToggleViMode            }
-  - { key: Y,                      mode: Vi, action: Copy                    }
-  - { key: P,                      mode: Vi, action: Paste                   }
-  - { key: Copy,                   mode: Vi, action: ClearSelection          }
+  - { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
+  - { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
+  - { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
+  - { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
+  - { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
+  - { key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
+  - { key: Y,      mods: Control,       mode: Vi|~Search, action: ScrollLineUp            }
+  - { key: E,      mods: Control,       mode: Vi|~Search, action: ScrollLineDown          }
+  - { key: G,                           mode: Vi|~Search, action: ScrollToTop             }
+  - { key: G,      mods: Shift,         mode: Vi|~Search, action: ScrollToBottom          }
+  - { key: B,      mods: Control,       mode: Vi|~Search, action: ScrollPageUp            }
+  - { key: F,      mods: Control,       mode: Vi|~Search, action: ScrollPageDown          }
+  - { key: U,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageUp        }
+  - { key: D,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageDown      }
+  - { key: Y,                           mode: Vi|~Search, action: Copy                    }
+  - { key: Y,                           mode: Vi|~Search, action: ClearSelection          }
+  - { key: Copy,                        mode: Vi|~Search, action: ClearSelection          }
+  - { key: V,                           mode: Vi|~Search, action: ToggleNormalSelection   }
+  - { key: V,      mods: Shift,         mode: Vi|~Search, action: ToggleLineSelection     }
+  - { key: V,      mods: Control,       mode: Vi|~Search, action: ToggleBlockSelection    }
+  - { key: V,      mods: Alt,           mode: Vi|~Search, action: ToggleSemanticSelection }
+  - { key: Return,                      mode: Vi|~Search, action: Open                    }
+  - { key: K,                           mode: Vi|~Search, action: Up                      }
+  - { key: J,                           mode: Vi|~Search, action: Down                    }
+  - { key: H,                           mode: Vi|~Search, action: Left                    }
+  - { key: L,                           mode: Vi|~Search, action: Right                   }
+  - { key: Up,                          mode: Vi|~Search, action: Up                      }
+  - { key: Down,                        mode: Vi|~Search, action: Down                    }
+  - { key: Left,                        mode: Vi|~Search, action: Left                    }
+  - { key: Right,                       mode: Vi|~Search, action: Right                   }
+  - { key: Key0,                        mode: Vi|~Search, action: First                   }
+  - { key: Key4,   mods: Shift,         mode: Vi|~Search, action: Last                    }
+  - { key: Key6,   mods: Shift,         mode: Vi|~Search, action: FirstOccupied           }
+  - { key: H,      mods: Shift,         mode: Vi|~Search, action: High                    }
+  - { key: M,      mods: Shift,         mode: Vi|~Search, action: Middle                  }
+  - { key: L,      mods: Shift,         mode: Vi|~Search, action: Low                     }
+  - { key: B,                           mode: Vi|~Search, action: SemanticLeft            }
+  - { key: W,                           mode: Vi|~Search, action: SemanticRight           }
+  - { key: E,                           mode: Vi|~Search, action: SemanticRightEnd        }
+  - { key: B,      mods: Shift,         mode: Vi|~Search, action: WordLeft                }
+  - { key: W,      mods: Shift,         mode: Vi|~Search, action: WordRight               }
+  - { key: E,      mods: Shift,         mode: Vi|~Search, action: WordRightEnd            }
+  - { key: Key5,   mods: Shift,         mode: Vi|~Search, action: Bracket                 }
+  - { key: Slash,                       mode: Vi|~Search, action: SearchForward           }
+  - { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
+  - { key: N,                           mode: Vi|~Search, action: SearchNext              }
+  - { key: N,      mods: Shift,         mode: Vi|~Search, action: SearchPrevious          }
+  - { key: P,                           mode: Vi|~Search, action: Paste                   }
 
+  # Search Mode
+  - { key: Return,                mode: Search|Vi,  action: SearchConfirm         }
+  - { key: Escape,                mode: Search,     action: SearchCancel          }
+  - { key: C,      mods: Control, mode: Search,     action: SearchCancel          }
+  - { key: U,      mods: Control, mode: Search,     action: SearchClear           }
+  - { key: W,      mods: Control, mode: Search,     action: SearchDeleteWord      }
+  - { key: P,      mods: Control, mode: Search,     action: SearchHistoryPrevious }
+  - { key: N,      mods: Control, mode: Search,     action: SearchHistoryNext     }
+  - { key: Up,                    mode: Search,     action: SearchHistoryPrevious }
+  - { key: Down,                  mode: Search,     action: SearchHistoryNext     }
+  - { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
+  - { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
+
+  # (Windows, Linux, and BSD only)
+  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: C,              mods: Control|Shift,                   action: Copy             }
+  - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
+  - { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
+  - { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
+  - { key: Insert,         mods: Shift,                           action: PasteSelection   }
+  - { key: Key0,           mods: Control,                         action: ResetFontSize    }
+  - { key: Equals,         mods: Control,                         action: IncreaseFontSize }
+  - { key: Plus,           mods: Control,                         action: IncreaseFontSize }
+  - { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
+  - { key: Minus,          mods: Control,                         action: DecreaseFontSize }
+  - { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }

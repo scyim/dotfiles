@@ -8,6 +8,8 @@ func! CompileAndRun()
         exec "AsyncRun -mode=term time bash %" 
     elseif &filetype == 'python'
         exec "AsyncRun -mode=term python %"
+    elseif &filetype == 'lua'
+        exec "AsyncRun -mode=term lua %"
     endif
 endfunc
 

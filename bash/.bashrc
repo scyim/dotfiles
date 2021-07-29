@@ -15,6 +15,9 @@ export PATH
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 export SYSTEMD_PAGER=
 
+export EDITOR=vim
+export VISUAL=vim
+
 # ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg.conf"
 
@@ -27,7 +30,7 @@ export REPO_OS_OVERRIDE="linux"
 # export PATH="$PATH:/opt/Android/Sdk/tools/bin"
 # export PATH="$PATH:/opt/jdk/jdk1.8.0_241/bin"
 # export PATH="$PATH:/opt/flutter/bin/cache/dart-sdk/bin/"
-export PATH="$PATH:/opt/phantomjs-2.1.1-linux-x86_64/bin"
+# export PATH="$PATH:/opt/phantomjs-2.1.1-linux-x86_64/bin"
 
 # flutter proxy
 export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
@@ -36,13 +39,19 @@ export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
 # alias sdkmanager="sdkmanager --sdk_root=/opt/Android/Sdk"
 
 # using dedicated graphic card
-export DRI_PRIME=1
+# export DRI_PRIME=1
+
+# rust apps
+# https://github.com/rust-windowing/winit/issues/1967
+export WINIT_UNIX_BACKEND=x11
+
+export FCITX_X11_USE_CLIENT_SIDE_UI=1
 
 # Mozilla
 export MOZ_ENABLE_WAYLAND=1
 
 # Libreoffice
-export SAL_ENABLESKIA=1
+# export SAL_ENABLESKIA=1
 
 # gtags
 # export GTAGSCONF='~/.config/gtags.conf'
@@ -65,9 +74,12 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 # qt5 
 # Need to install qgnomeplatform
 # This fix is guaranteed to work with Adwaita or Adwaita-dark.
-export QT_QPA_PLATFORMTHEME='qt5ct'
-export IBUS_USE_PORTAL=1
 # export QT_STYLE_OVERRIDE=Adwaita
+export IBUS_USE_PORTAL=1
+export QT_QPA_PLATFORM='wayland'
+export QT_QPA_PLATFORMTHEME='gnome'
+# export XDG_SESSION_TYPE='wayland'
+
 
 # rust
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -91,7 +103,7 @@ alias vim="nvim"
 alias readit="vim -u ~/.vimreader"
 # alias firefox='/usr/bin/firefox-wayland'
 # alias zeal="zeal -style Fusion"
-alias bat="bat --style=plain --theme=TwoDark"
+alias bat="bat --style=plain --theme=gruvbox"
 # tmux
 alias ta="tmux attach"
 alias tad="tmux attach -d -t"
@@ -99,12 +111,17 @@ alias ts="tmux new-session -s"
 alias tl="tmux list-sessions"
 alias tksv="tmux kill-server"
 alias tkss="tmux kill-session -t"
+alias qt-creater="/opt/qt/Tools/QtCreator/bin/qtcreator"
+alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+alias rime="vim -c 'normal GG' ~/.local/share/fcitx5/rime/flypy_double.user.dict.yaml"
 
 alias objdump="objdump -M intel "
 alias j="z"
 alias open="xdg-open"
 alias o="xdg-open"
 alias o.="xdg-open ."
+
+# alias alacritty="WINIT_UNIX_BACKEND=x11 alacritty"
 
 # Prompt
 # function _update_ps1() {
@@ -183,4 +200,14 @@ function ccat() {
 function mc() {
     mkdir "$@"
     cd "$@"
+}
+
+function try_until_success() {
+    local i=1
+    while true
+    do echo "Try $i $* at $(date): "
+        $* && break
+        (( i+=1 ))
+        sleep 3
+    done
 }

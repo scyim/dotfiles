@@ -4,9 +4,9 @@ nnoremap <c-k> :bn<cr>
 nnoremap <c-h> :tabprevious<cr>
 nnoremap <c-l> :tabnext<cr>
 
-" nnoremap <f1> :NERDTreeToggle <cr>
-nnoremap <f1> :NnnPicker <cr>
-nnoremap <f2> :Tagbar <cr>
+nnoremap <f1> :NERDTreeToggle <cr>
+" nnoremap <f2> :Tagbar <cr>
+nnoremap <f2> :Vista!!<cr>
 
 nnoremap <silent> [q :cprevious <cr>
 nnoremap <silent> ]q :cnext <cr>

@@ -4,3 +4,4 @@ export GTK_IM_MODULE=wayland
 export QT4_IM_MODULE=wayland
 export QT_IM_MODULE=wayland
 export XIM=wayland
+export FCITX_X11_USE_CLIENT_SIDE_UI=1

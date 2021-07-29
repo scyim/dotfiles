@@ -1,27 +1,32 @@
 { 
     "languageserver": {
 	},
-	"diagnostic.errorSign": "◉",
-	"diagnostic.warningSign": "○",
+	"diagnostic.errorSign": "x",
+	"diagnostic.warningSign": "!",
 	"diagnostic.hintSign": "➤",
     "diagnostic.virtualText": false,
-    "diagnostic.virtualTextPrefix": "- ",
+    "diagnostic.virtualTextPrefix": "> ",
 	"suggest.noselect": false,
 	"suggest.enablePreselect": false,
     "suggest.enablePreview": true,
-    "coc.preferences.hoverTarget": "float",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "coc.preferences.colorSupport": true,
 	"suggest.detailField": "preview",
 	"rust-client.disableRustup": false,
     "markdownlint.config": {
         "MD014": false,
         "MD012": false,
-        "MD010": false
+        "MD010": false,
+        "MD013": false
     },
     "clangd.arguments": [],
     "suggest.floatEnable": false,
     "notification.maxWidth": 60,
     "notification.maxHeight": 10,
     "python.linting.pylintEnabled": true,
-    "python.analysis.typeCheckingMode":"off"
+    "python.analysis.typeCheckingMode":"off",
+    "snippets.snipmate.enable": true,
+    "snippets.ultisnips.enable": true,
+    "snippets.autoTrigger": true,
+    "snippets.loadFromExtensions": true
 }
