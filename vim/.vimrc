@@ -3,6 +3,7 @@ if &compatible
 endif
 
 call plug#begin('~/.vim/plugged')
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asynctasks.vim'
@@ -25,7 +26,7 @@ Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx5'}
 " Plug 'kevinhwang91/vim-ibus-sw'
 if has('nvim-0.0.5')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+    Plug 'lukas-reineke/indent-blankline.nvim'
     " Plug 'neovim/nvim-lspconfig'
 endif
 " Plug 'jsfaint/gen_tags.vim'
@@ -37,7 +38,7 @@ Plug 'KabbAmine/zeavim.vim'
 " Plug 'ap/vim-css-color'
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'skywind3000/gutentags_plus'
-Plug 'jsfaint/gen_tags.vim'
+" Plug 'jsfaint/gen_tags.vim'
 
 Plug 'dstein64/vim-startuptime'
 " Plug 'Yggdroot/indentLine'
@@ -48,6 +49,7 @@ Plug 'morhetz/gruvbox'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
 Plug 'tomasr/molokai'
+Plug 'sainnhe/gruvbox-material'
 
 call plug#end()
 
@@ -140,9 +142,14 @@ if &term =~ "xterm" || &term =~ "alacritty" || &term =~ "tmux"
     let &t_EI = "\x1b[\x31 q" 
 endif
 
-autocmd BufReadPost *.gsm set filetype=asm
-autocmd BufReadPost *.s   set filetype=asm
-autocmd BufReadPost *.asm set filetype=asm
+autocmd BufReadPost  *.gsm set  filetype=asm
+autocmd BufReadPost  *.s   set  filetype=asm
+autocmd BufReadPost  *.asm set  filetype=asm
+
+autocmd BufReadPost  *.tex set  filetype=tex
+" autocmd BufWritePost *.tex exec "AsyncRun -mode=term make"
+
+
 
 " vim-auto-popmenu
 let g:apc_enable_ft = {'text':1, 'c++':1, 'python':1}

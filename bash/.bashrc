@@ -39,13 +39,13 @@ export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
 # alias sdkmanager="sdkmanager --sdk_root=/opt/Android/Sdk"
 
 # using dedicated graphic card
-# export DRI_PRIME=1
+export DRI_PRIME=1
 
 # rust apps
 # https://github.com/rust-windowing/winit/issues/1967
-export WINIT_UNIX_BACKEND=x11
+# export WINIT_UNIX_BACKEND=x11
 
-export FCITX_X11_USE_CLIENT_SIDE_UI=1
+# export FCITX_X11_USE_CLIENT_SIDE_UI=1
 
 # Mozilla
 export MOZ_ENABLE_WAYLAND=1
@@ -76,13 +76,13 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 # This fix is guaranteed to work with Adwaita or Adwaita-dark.
 # export QT_STYLE_OVERRIDE=Adwaita
 export IBUS_USE_PORTAL=1
-export QT_QPA_PLATFORM='wayland'
+# export QT_QPA_PLATFORM='wayland'
 export QT_QPA_PLATFORMTHEME='gnome'
-# export XDG_SESSION_TYPE='wayland'
+export XDG_SESSION_TYPE='wayland'
 
 
 # rust
-export PATH="$PATH:$HOME/.cargo/bin"
+# export PATH="$PATH:$HOME/.cargo/bin"
 # npm
 # npm config set prefix "${HOME}/.local/lib/npm-packages"
 NPM_PACKAGES="${HOME}/.local/lib/npm-packages"
@@ -100,10 +100,11 @@ alias upgrade="sudo dnf upgrade"
 alias sqlite="sqlite3"
 alias vim="nvim"
 # alias vim="/opt/neovim/bin/nvim"
-alias readit="vim -u ~/.vimreader"
+# alias readit="vim -u ~/.vimreader"
 # alias firefox='/usr/bin/firefox-wayland'
 # alias zeal="zeal -style Fusion"
 alias bat="bat --style=plain --theme=gruvbox"
+alias xpdf="zathura"
 # tmux
 alias ta="tmux attach"
 alias tad="tmux attach -d -t"

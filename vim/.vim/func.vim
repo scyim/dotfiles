@@ -10,6 +10,8 @@ func! CompileAndRun()
         exec "AsyncRun -mode=term python %"
     elseif &filetype == 'lua'
         exec "AsyncRun -mode=term lua %"
+    elseif &filetype == 'tex'
+        exec "AsyncRun -mode=term latexmk"
     endif
 endfunc
 
