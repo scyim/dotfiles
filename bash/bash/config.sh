@@ -6,7 +6,7 @@ export VISUAL=vim
 
 ## Bash
 export PS1='\[\033[01;34m\]\u@\h \W \$\[\033[00m\] '
-
+#
 killall ibus-daemon 2> /dev/null
 
 # disable Ctrl+s & Ctrl+q
@@ -75,15 +75,15 @@ export XDG_SESSION_TYPE='wayland'
 # Have less display colours
 # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
 # explanation: https://misc.flogisoft.com/bash/tip_colors_and_formatting
-export LESS=-R
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
-export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[01;49;92m' # begin reverse video
-export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;35m'     # begin underline
-export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+# export LESS=-R
+# export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
+# export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+# export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+# export LESS_TERMCAP_so=$'\E[01;49;92m' # begin reverse video
+# export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+# export LESS_TERMCAP_us=$'\E[1;35m'     # begin underline
+# export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+# export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 ## npm
 export NPM_PACKAGES="${HOME}/.local/lib/npm-packages"
@@ -153,9 +153,9 @@ function unset_proxy() {
 }
 
 # colorful cat
+# pip install pygments
+# https://zhuanlan.zhihu.com/p/49552439
 function ccat() {
-    # pip install pygments
-    # https://zhuanlan.zhihu.com/p/49552439
     local style="monokai"
     if [ $# -eq 0 ]; then
         pygmentize -P style=$style -P tabsize=4 -f terminal256 -g

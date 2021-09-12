@@ -258,8 +258,6 @@ input $myTouchPad tap_button_map lrm
 # seat seat0 xcursor_theme DMZ-White 24
 
 # sway wallpaper
-#output eDP-1 res 1920x1080 pos 1920,0 scale 0  bg ~/Pictures/centos.png fill
-#output eDP-1 scale 1 bg /home/yim/Pictures/centos.png fill
 output eDP-1 res 1920x1080 pos 1920,0 scale 0  bg ~/Pictures/wallpapers/winxp.jpg fill
 
 # Pulse Audio controls
