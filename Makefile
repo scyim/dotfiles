@@ -13,7 +13,6 @@ install:
 	stow -t ~/.config waybar
 	stow -t ~/.config py3status
 	stow -t ~/.config wofi
-	stow -t ~/.config Zeal
 	stow -t ~/.config i3
 	stow -t ~/.config ibus
 	stow -t ~/.config xsettingsd
@@ -48,7 +47,6 @@ uninstall:
 	stow -t ~/.config -D waybar
 	stow -t ~/.config -D py3status
 	stow -t ~/.config -D wofi
-	stow -t ~/.config -D Zeal
 	stow -t ~/.config -D i3
 	stow -t ~/.config -D ibus
 	stow -t ~/.config -D xsettingsd
