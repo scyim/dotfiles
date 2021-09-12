@@ -1,5 +1,5 @@
 vim/.vim/plugged
-vim/.vim/autoload/plug.vim
+#vim/.vim/autoload/plug.vim
 vim/.vim/autoload/plug.vim.old
 fcitx5/fcitx5/crash.log
 gtk-3.0/gtk-3.0/bookmarks

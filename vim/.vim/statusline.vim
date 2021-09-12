@@ -1,3 +1,16 @@
+let g:asyncrun_status = "stopped"
+function! AsynrunStatus()
+    if g:asyncrun_status == "stopped"
+        return 
+    else
+        return g:asyncrun_status
+    endif
+endfunction
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {

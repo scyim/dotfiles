@@ -1,7 +1,3 @@
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -14,11 +10,11 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
-else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" if has('nvim')
+    " inoremap <silent><expr> <c-space> coc#refresh()
+" else
+    " inoremap <silent><expr> <c-@> coc#refresh()
+" endif
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -42,9 +38,6 @@ function! s:show_documentation()
         call CocActionAsync('doHover')
     endif
 endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 
  " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -118,5 +111,5 @@ nnoremap <silent><nowait> <leader>fg :exe 'CocList grep'<CR>
 " coc-yank
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
-"coc-hightlight
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" coc-hightlight
+" autocmd CursorHold * silent call CocActionAsync('highlight')

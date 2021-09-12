@@ -1,11 +1,11 @@
 install:
 	stow -t ~ info
-	stow -t ~ bash
 	stow -t ~ vim
 	stow -t ~ gdb
 	stow -t ~ tmux
 	stow -t ~ git
 	stow -t ~ font
+	stow -t ~/.config bash
 	stow -t ~/.config alacritty
 	stow -t ~/.config mako 
 	stow -t ~/.config nvim
@@ -30,15 +30,17 @@ install:
 	stow -t ~/.config i3status
 	stow -t ~/.config rofi
 	stow -t ~ npm
+	echo 'source ~/.config/bash/config.sh' >> ~/.bashrc
+
 uninstall:
 	stow -t ~ -D npm
 	stow -t ~ -D info
-	stow -t ~ -D bash
 	stow -t ~ -D vim
 	stow -t ~ -D gdb
 	stow -t ~ -D tmux
 	stow -t ~ -D git
 	stow -t ~ -D font
+	stow -t ~/.config -D bash
 	stow -t ~/.config -D alacritty
 	stow -t ~/.config -D mako 
 	stow -t ~/.config -D nvim

@@ -142,15 +142,6 @@ if &term =~ "xterm" || &term =~ "alacritty" || &term =~ "tmux"
     let &t_EI = "\x1b[\x31 q" 
 endif
 
-autocmd BufReadPost  *.gsm set  filetype=asm
-autocmd BufReadPost  *.s   set  filetype=asm
-autocmd BufReadPost  *.asm set  filetype=asm
-
-autocmd BufReadPost  *.tex set  filetype=tex
-" autocmd BufWritePost *.tex exec "AsyncRun -mode=term make"
-
-
-
 " vim-auto-popmenu
 let g:apc_enable_ft = {'text':1, 'c++':1, 'python':1}
 
@@ -186,9 +177,9 @@ let g:indent_blankline_bufname_exclude = ['README.md']
 
 
 " fzf-vim
-let g:fzf_preview_window = ['right:50%', 'ctrl-/']
-let g:fzf_buffers_jump = 1
-autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
+" let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+" let g:fzf_buffers_jump = 1
+" autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 
 " vim-translator
 let g:translator_default_engines=['bing', 'youdao']
@@ -241,6 +232,14 @@ augroup END
 " filetype
 autocmd FileType yaml set noexpandtab
 
+autocmd BufReadPost  *.gsm set  filetype=asm
+autocmd BufReadPost  *.s   set  filetype=asm
+autocmd BufReadPost  *.asm set  filetype=asm
+
+autocmd BufReadPost  *.tex set  filetype=tex
+autocmd BufReadPost  *.tex set  filetype=tex
+
+""" gtags
 " source /usr/share/gtags/gtags.vim
 " source /usr/share/gtags/gtags-cscope.vim
 

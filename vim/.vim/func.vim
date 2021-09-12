@@ -15,11 +15,3 @@ func! CompileAndRun()
     endif
 endfunc
 
-let g:asyncrun_status = "stopped"
-function! AsynrunStatus()
-    if g:asyncrun_status == "stopped"
-        return 
-    else
-        return g:asyncrun_status
-    endif
-endfunction
