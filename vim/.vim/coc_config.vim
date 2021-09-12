@@ -1,3 +1,20 @@
+let g:coc_global_extensions = [
+            \'coc-clangd',
+            \'coc-pairs',
+            \'coc-word',
+            \'coc-lists',
+            \'coc-pyright',
+            \'coc-snippets',
+            \'coc-json',
+            \'coc-yank',
+            \'coc-git',
+            \'coc-rls',
+            \'coc-css',
+            \'coc-markdownlint',
+            \'coc-marketplace',
+            \'coc-texlab',
+            \]
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

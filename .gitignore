@@ -7,5 +7,8 @@ ibus/ibus/bus
 ibus/ibus/pinyin/bus
 ibus/ibus/rime/*
 vim/.vim/sessions
+coc/coc/*.json
+coc/coc/extensions
+coc/coc/mru
 ibus/ibus/rime/*
 **tags

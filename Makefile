@@ -6,6 +6,7 @@ install:
 	stow -t ~ git
 	stow -t ~ font
 	stow -t ~/.config bash
+	stow -t ~/.config coc
 	stow -t ~/.config alacritty
 	stow -t ~/.config mako 
 	stow -t ~/.config nvim
@@ -40,6 +41,7 @@ uninstall:
 	stow -t ~ -D git
 	stow -t ~ -D font
 	stow -t ~/.config -D bash
+	stow -t ~/.config -D coc
 	stow -t ~/.config -D alacritty
 	stow -t ~/.config -D mako 
 	stow -t ~/.config -D nvim
