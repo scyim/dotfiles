@@ -5,6 +5,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rafamadriz/friendly-snippets'
+
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/vim-dict'
@@ -24,11 +26,11 @@ Plug 'liuchengxu/vista.vim'
 " Plug 'vim-scripts/confirm-quit'
 Plug 'lilydjwg/fcitx.vim', {'branch': 'fcitx5'}
 " Plug 'kevinhwang91/vim-ibus-sw'
-if has('nvim-0.0.5')
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'lukas-reineke/indent-blankline.nvim'
-    " Plug 'neovim/nvim-lspconfig'
-endif
+" if has('nvim-0.0.5')
+    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " Plug 'lukas-reineke/indent-blankline.nvim'
+    " " Plug 'neovim/nvim-lspconfig'
+" endif
 " Plug 'jsfaint/gen_tags.vim'
 Plug 'honza/vim-snippets'
 " Plug 'sheerun/vim-polyglot'
@@ -41,7 +43,7 @@ Plug 'KabbAmine/zeavim.vim'
 " Plug 'jsfaint/gen_tags.vim'
 
 Plug 'dstein64/vim-startuptime'
-" Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 " Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 
@@ -77,8 +79,8 @@ set history=1000
 set ignorecase
 set noswapfile
 "set colorcolumn=81
-" set signcolumn=number
-set signcolumn=no
+set signcolumn=number
+" set signcolumn=no
 " set number relativenumber
 " set termguicolors
 set cursorline
@@ -152,13 +154,13 @@ let g:indentLine_color_term = 239
 " let g:indentLine_bgcolor_term = 202
 let g:indentLine_fileType = ['shell', 'python']
 
-let g:indent_blankline_char = '┆'
-let g:indent_blankline_use_treesitter = v:true
-let g:indent_blankline_filetype = ['python']
-let g:indent_blankline_space_char_blankline = ' '
-let g:indent_blankline_filetype_exclude = ['help']
-let g:indent_blankline_buftype_exclude = ['terminal']
-let g:indent_blankline_bufname_exclude = ['README.md']
+" let g:indent_blankline_char = '┆'
+" let g:indent_blankline_use_treesitter = v:true
+" let g:indent_blankline_filetype = ['python']
+" let g:indent_blankline_space_char_blankline = ' '
+" let g:indent_blankline_filetype_exclude = ['help']
+" let g:indent_blankline_buftype_exclude = ['terminal']
+" let g:indent_blankline_bufname_exclude = ['README.md']
 
 " leadef 
 " let g:Lf_WindowPosition = 'popup'
@@ -257,6 +259,6 @@ source ~/.vim/func.vim
 source ~/.vim/mapping.vim
 source ~/.vim/statusline.vim
 
-if has('nvim-0.0.5')
-    source ~/.vim/nvim.vim
-endif
+" if has('nvim-0.0.5')
+    " source ~/.vim/nvim.vim
+" endif

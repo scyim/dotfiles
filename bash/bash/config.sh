@@ -99,7 +99,7 @@ alias ll="ls -alh --group-directories-first --color=auto"
 alias la="ls -a --group-directories-first --color=auto"
 alias upgrade="sudo dnf upgrade"
 alias sqlite="sqlite3"
-alias vim="nvim"
+# alias vim="nvim"
 # alias firefox='/usr/bin/firefox-wayland'
 alias zeal="zeal -style Fusion"
 alias bat="bat --style=plain --theme=gruvbox"
